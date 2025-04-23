@@ -20,8 +20,8 @@ class UrlManager extends Controller
             $url->save();
         }
         return response()->json([
-            'short_url' => url('/').'/' . $shortCode
-        ]);
+            'short_url' => url('/') . '/' . $url->short_code,
+        ], 200);
 }
     function redirectToOriginalUrl($code){
         $url= Url::where('short_code',$code)->first();
@@ -29,19 +29,8 @@ class UrlManager extends Controller
             abort(404, 'URL not found');
         }
         $url->increment('visits');
-        return response($url->original_url);
+        return redirect($url->original_url);
     }
-    function stats()
-    {
-        $url= Url::where('short_code',$code)->first();
-        if (!$url){
-            abort(404, 'URL not found');
-        }
-        return response()->json([
-            'original_url' => $url->original_url,
-            'short_code' => $url('/').'/'.$url->short_code,
-            'visits' => $url->visits,
-        ]);
-    }
+
 
 }

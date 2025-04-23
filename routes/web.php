@@ -10,5 +10,4 @@ Route::post('/short-url',[UrlManager::class, 'createShortUrl'])
     ->name('url.short');
 Route::get('/{code}', [UrlManager::class, 'redirectToOriginalUrl'])
     ->name('url.redirect');
-Route::get('starts/{code}',[UrlManager::class, 'stats'])
-    ->name('url.stats');
+

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('original_url');
             $table->string('short_code')->unique();
-            $table->unsignedBigInteger('visits')->default(0);
             $table->timestamps();
         });
     }
